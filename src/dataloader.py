@@ -32,9 +32,9 @@ def load_raw_tokens(num_tokens: int) -> List[int]:
         for obj in objects:
             if not isinstance(obj, dict) or "text" not in obj:
                 continue
-            text = obj["text"] + "eot"
+            text = obj["text"] + "<|endoftext|>"
 
-            encoded = tokenizer.encode(text, allowed_special={'eot'})
+            encoded = tokenizer.encode(text, allowed_special={'<|endoftext|>'})
             if encoded:
                 tokens.extend(encoded)
             if len(tokens) >= num_tokens:
